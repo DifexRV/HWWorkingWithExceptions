@@ -7,19 +7,19 @@ import Exception.WrongConfirmPasswordException;
 
 public class RegistrationServiceImpl implements RegistrationService {
 
-    public static String checkingProfileInformation(Registration registration) {
-        try {
-            if (registration.getLogin().length() > 20 || !registration.getLogin().matches("[A-Za-z0-9_]+")) {
-                throw new WrongLoginException();
-            } else if (registration.getPassword().length() > 20 || !registration.getPassword().matches("[A-Za-z0-9_]+")) {
-                throw new WrongPasswordException();
-            } else if (!registration.getPassword().equals(registration.getConfirmPassword())) {
-                throw new WrongConfirmPasswordException();
-            }
-        } catch (WrongLoginException | WrongPasswordException | WrongConfirmPasswordException e) {
-            e.printStackTrace();
+    public static void checkingProfileInformation(Registration registration) throws Exception {
+        if (registration.getLogin().length() > 20 || !registration.getLogin().matches("[A-Za-z0-9_]+")) {
+            throw new WrongLoginException();
         }
-        return null;
+        if (registration.getPassword().length() > 20 || !registration.getPassword().matches("[A-Za-z0-9_]+")) {
+            throw new WrongPasswordException();
+        }
+        if (!registration.getPassword().equals(registration.getConfirmPassword())) {
+            throw new WrongConfirmPasswordException();
+        } else {
+            System.out.println("Поздравляем, " + registration.getLogin() + ", с успешной регистрацией!");
+        }
+
     }
 
 }

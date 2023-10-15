@@ -13,9 +13,14 @@ public class Main {
         Registration registration1 = new Registration("AgentBond-007", "007_Spectrum", "007_Spectrum");
         Registration registration2 = new Registration("AgentBond_007", "007:Spectrum", "007:Spectrum");
 
-        new RegistrationServiceImpl().checkingProfileInformation(registration);
-        new RegistrationServiceImpl().checkingProfileInformation(registration1);
-        new RegistrationServiceImpl().checkingProfileInformation(registration2);
+        try {
+            new RegistrationServiceImpl().checkingProfileInformation(registration);
+            new RegistrationServiceImpl().checkingProfileInformation(registration1);
+            new RegistrationServiceImpl().checkingProfileInformation(registration2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
